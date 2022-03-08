@@ -1,0 +1,11 @@
+@font-face {
+    font-family: "Geometria";
+    src: url(../styles/assets/fonts/Geometria/Geometria.ttf);
+}
+
+body {
+    background: linear-gradient(122.76deg, #ffa2a2 4.09%, #ff7b7b 91.04%), #ffffff;
+    display: flex;
+    justify-content: center;
+    font-family: Geometria;
+}
