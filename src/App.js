@@ -1,7 +1,7 @@
 import MyButtons from './components/MyButtons';
 import './App.css';
 import { useState } from 'react';
-import calculator from './calculations/calculation';
+import calculator from './calculations/calculator';
 
 function App() {
   let [display, setDisplay] = useState('')
@@ -18,12 +18,6 @@ function App() {
     setResult(result = calculator(display))
     setDisplay(display = calculator(display))
   }
-
-//  function handleKeyPress (e) {
-//    if(e.key === 'Enter'){
-//      console.log('You must have pressed Enter ')
- //   }
-//  }
 
   return (
     <div className="calculator">
