@@ -1,4 +1,3 @@
-import { test, expect } from '@jest/globals';
 import calculator from "../src/calculations/calculator";
 
 test('calculator', () => {

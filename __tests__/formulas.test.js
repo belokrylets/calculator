@@ -1,4 +1,3 @@
-import { test, expect } from '@jest/globals';
 import { sum, subtraction, multiplication, division, root, percent, sumPercent, subtractionPercent } from '../src/calculations/formulas';
 test('sum', () => {
   expect(sum('5', '10')).toEqual(15);
