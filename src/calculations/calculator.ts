@@ -1,4 +1,4 @@
-import { sum, subtraction, multiplication, division, root, percent, sumPercent, subtractionPercent } from './src/calculations/formulas';
+import { sum, subtraction, multiplication, division, root, percent, sumPercent, subtractionPercent } from './formulas';
 
 const calculationSigns:string[] = ['+', '-', '×', '/', '%', '√'];
 
@@ -11,9 +11,14 @@ function arrayСonstructor(str: string):string[] {   //преобразует с
             stringWithSpaces += (str[i]);
         }
     }
-    return stringWithSpaces.split(' ');
+    return stringWithSpaces.split(' ').map(function(item:string):any {
+    if (!Number(item)) {
+      return item;
+    } 
+    return Number(item);
+  });
 }
-function emptyCellRemover(arr: string[]):string[] {   // удаляет из массва пустые ячейки
+function emptyCellRemover(arr: string[]):string[] | number[] {   // удаляет из массва пустые ячейки
     const result = [];
     for (const item of arr) {
         if (item !== undefined) {
@@ -27,35 +32,27 @@ function calculator(str: string):number {
     var arr: number[] | string[] = arrayСonstructor(commaSubstitution);
     if (!!arr.includes('√')) {
         arr[0] = root(arr[0]);
-        delete arr[1];
-        delete arr[2];
-        arr = emptyCellRemover(arr);
+        arr.splice(1)
     }
     if (!!arr.includes('%')) {
         if (arr.length <= 3) {
-            arr[0] = `${percent(arr[0])}`;
-            delete arr[1];
-            delete arr[2];
-            arr = emptyCellRemover(arr);
+            arr[0] = percent(arr[0]);
+            arr.splice(1)
         } else {
-            (arr[1] === '-') ? arr[0] = `${subtractionPercent(arr[0], arr[2])}` : arr[0] = `${sumPercent(arr[0], arr[2])}`;
-            delete arr[1];
-            delete arr[2];
-            delete arr[3];
-            delete arr[4];
-            arr = emptyCellRemover(arr);
+            (arr[1] === '-') ? arr[0] = subtractionPercent(arr[0], arr[2]) : arr[0] = sumPercent(arr[0], arr[2]);
+            arr.splice(1)
         }
     }
     while (!!arr.includes('/') || !!arr.includes('×')) { //цикл работает пока в массиве есть умножение и деление
         for (let i = 0; i <= arr.length; i++) {
             if (arr[i] === '×') {
-                arr[i] = `${multiplication(arr[i - 1], arr[i + 1])}`;
+                arr[i] = multiplication(arr[i - 1], arr[i + 1]);
                 delete arr[i - 1];
                 delete arr[i + 1];
                 arr = emptyCellRemover(arr);
 
             } else if (arr[i] === '/') {
-                arr[i] = `${division(arr[i - 1], arr[i + 1])}`;
+                arr[i] = division(arr[i - 1], arr[i + 1]);
                 delete arr[i - 1];
                 delete arr[i + 1];
                 arr = emptyCellRemover(arr);
@@ -65,19 +62,19 @@ function calculator(str: string):number {
     while (arr.length > 1) { // цикл работает пока не выполняться все вычетания и сложения
         for (let i = 0; i <= arr.length; i++) {
             if (arr[i] === '+') {
-                arr[i] = `${sum(arr[i - 1], arr[i + 1])}`;
+                arr[i] = sum(arr[i - 1], arr[i + 1]);
                 delete arr[i - 1];
                 delete arr[i + 1];
                 arr = emptyCellRemover(arr);
 
             } else if (arr[i] === '-') {
-                arr[i] = `${subtraction(arr[i - 1], arr[i + 1])}`;
+                arr[i] = subtraction(arr[i - 1], arr[i + 1]);
                 delete arr[i - 1];
                 delete arr[i + 1];
                 arr = emptyCellRemover(arr);
             }
         }
     }
-    return Number(arr[0]);
+    return arr[0];
 }
 export default calculator;

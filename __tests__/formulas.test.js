@@ -1,4 +1,5 @@
-import { sum, subtraction, multiplication, division, root, percent, sumPercent, subtractionPercent } from '../src/calculations/formulas';
+import { sum, subtraction, multiplication, division, root, percent, sumPercent, subtractionPercent } from '../src/calculations/formulas.js';
+
 test('sum', () => {
   expect(sum('5', '10')).toEqual(15);
   expect(sum('-5', '10')).toEqual(5);
