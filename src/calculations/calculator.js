@@ -1,4 +1,6 @@
-import { sum, subtraction, multiplication, division, root, percent, sumPercent, subtractionPercent } from './formulas';
+import {
+  sum, subtraction, multiplication, division, root, percent, sumPercent, subtractionPercent,
+} from './formulas';
 
 const calculationSigns = ['+', '-', '×', '/', '%', '√'];
 function arrayСonstructor(str) {
@@ -11,10 +13,10 @@ function arrayСonstructor(str) {
     }
   }
   return stringWithSpaces.split(' ').map((item) => {
-    if (!!Number(item)) {
-      return Number(item);
-    } 
-    return item;
+    if (!Number(item)) {
+      return item;
+    }
+    return Number(item);
   });
 }
 function emptyCellRemover(arr) {
@@ -31,15 +33,16 @@ function calculator(str) {
   let arr = arrayСonstructor(commaSubstitution);
   if (arr.includes('√')) {
     arr[0] = root(arr[0]);
-    arr.splice(1)
+    arr.splice(1);
   }
   if (arr.includes('%')) {
     if (arr.length <= 3) {
       arr[0] = percent(arr[0]);
-      arr.splice(1)
+      arr.splice(1);
     } else {
-      (arr[1] === '-') ? arr[0] = subtractionPercent(arr[0], arr[2]) : arr[0] = sumPercent(arr[0], arr[2]);
-      arr.splice(1)
+      arr[0] = (arr[1] === '-') ? subtractionPercent(arr[0], arr[2]) : sumPercent(arr[0], arr[2]);
+
+      arr.splice(1);
     }
   }
   while (!!arr.includes('/') || !!arr.includes('×')) { // цикл работает пока в массиве есть умножение и деление
@@ -75,4 +78,3 @@ function calculator(str) {
   return arr[0];
 }
 export default calculator;
-
