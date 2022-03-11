@@ -22,4 +22,3 @@ export function sumPercent(a, b) {
 export function subtractionPercent(a, b) {
   return a - ((a * b) / 100);
 }
-

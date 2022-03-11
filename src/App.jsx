@@ -14,8 +14,9 @@ function App() {
     setResult(result = 0);
   }
   function displeyResult() {
-    setResult(result = calculator(display));
-    setDisplay(display = calculator(display));
+    const getResult = calculator(display);
+    setResult(result = getResult);
+    setDisplay(display = getResult);
   }
 
   return (
@@ -24,7 +25,9 @@ function App() {
       <div className="result">{result}</div>
       <div className="line" />
       <div className="buttons">
-        <MyButtons setFormula={setFormula} clearFormula={clearFormula} displeyResult={displeyResult} />
+        <MyButtons setFormula={setFormula}
+        clearFormula={clearFormula}
+        displeyResult={displeyResult} />
       </div>
     </div>
   );

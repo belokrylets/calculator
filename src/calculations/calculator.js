@@ -20,13 +20,7 @@ function arrayСonstructor(str) {
   });
 }
 function emptyCellRemover(arr) {
-  const result = [];
-  for (let i = 0; i < arr.length; i += 1) {
-    if (arr[i] !== undefined) {
-      result.push(arr[i]);
-    }
-  }
-  return result;
+  return arr.filter((item) => !!item);
 }
 function calculator(str) {
   const commaSubstitution = str.replace(/,/gi, '.');
