@@ -1,4 +1,4 @@
-#SPA "Калькулятор"
+SPA "Калькулятор"
 
 Для установки локально и запуска приложения ведите git clone git@github.com:belokrylets/calculator.git
 
