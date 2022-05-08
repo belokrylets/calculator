@@ -6,17 +6,17 @@ import calculator from './calculations/calculator';
 function App() {
   let [display, setDisplay] = useState('');
   let [result, setResult] = useState(0);
-  function setFormula(arg) {
+  function setFormula(arg: string): void {
     setDisplay(display + arg);
   }
-  function clearFormula() {
+  function clearFormula(): void {
     setDisplay(display = '');
     setResult(result = 0);
   }
-  function displeyResult() {
+  function displeyResult(): void {
     const getResult = calculator(display);
     setResult(result = getResult);
-    setDisplay(display = getResult);
+    setDisplay(display = String(getResult));
   }
 
   return (

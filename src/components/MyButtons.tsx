@@ -21,8 +21,9 @@ const buttons = [
   { button: '0', id: 18 },
   { button: ',', id: 19 },
 ];
-const MyButtons = ({ setFormula, clearFormula, displeyResult }) => {
-
+const MyButtons = (props: { setFormula: any; clearFormula: any; displeyResult: any; }) => {
+    const { setFormula, clearFormula, displeyResult } = props
+    
     return (
            <>
            <div className='buttonSection'>

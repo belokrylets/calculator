@@ -1,4 +1,4 @@
-import calculator from '../src/calculations/calculator.js';
+import calculator from '../src/calculations/calculator';
 
 test('calculator', () => {
   expect(calculator('50+50')).toEqual(100);

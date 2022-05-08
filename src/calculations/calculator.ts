@@ -3,7 +3,7 @@ import {
 } from './formulas';
 
 const calculationSigns = ['+', '-', '×', '/', '%', '√'];
-function arrayСonstructor(str) {
+const arrayСonstructor = (str: string): any[] => {
   let stringWithSpaces = '';
   for (let i = 0; i < str.length; i += 1) {
     if (calculationSigns.includes(str[i])) {
@@ -19,10 +19,10 @@ function arrayСonstructor(str) {
     return Number(item);
   });
 }
-function emptyCellRemover(arr) {
+const emptyCellRemover = (arr: (string | number)[]): (number | string)[]=> {
   return arr.filter((item) => !!item);
 }
-function calculator(str) {
+const calculator = (str: string): number => {
   const commaSubstitution = str.replace(/,/gi, '.');
   let arr = arrayСonstructor(commaSubstitution);
   if (arr.includes('√')) {
